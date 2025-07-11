@@ -6,7 +6,7 @@ const requestConfig = {};
 
 export const Meals = () => {
     const { data: loadedMeals, isLoading, error } =
-     useHttp("http://localhost:3000/meals", requestConfig, []);
+     useHttp("https://687199ec76a5723aacd25b6e.mockapi.io/meals", requestConfig, []);
 
     if (isLoading) {
         return <p className="center">Fetching meals...</p>

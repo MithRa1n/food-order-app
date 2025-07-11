@@ -15,7 +15,7 @@ const requestConfig = {
 export default function Checkout() {
     const cartCtx = useContext(CartContext);
     const userProgressCtx = useContext(UserProgressContext);
-    const {data, isLoading: isSending, error, sendRequest, clearData} = useHttp('http://localhost:3000/orders', requestConfig);
+    const {data, isLoading: isSending, error, sendRequest, clearData} = useHttp('https://687199ec76a5723aacd25b6e.mockapi.io/orders', requestConfig);
     function handleCloseCart() {
         userProgressCtx.hideCart();
     }
