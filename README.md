@@ -7,3 +7,4 @@ CSS Modules for styling
 Display meals with image, name, price, and description
 Add items to the cart
 Cart item count updates in real time
+[👉 View Live App] - [food-order-app-omega-two.vercel.app](https://food-order-app-omega-two.vercel.app)
