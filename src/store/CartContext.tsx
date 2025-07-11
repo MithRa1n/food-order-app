@@ -4,7 +4,8 @@ import { CartItemInterface } from "../types/models";
 
 type CartAction =
   | { type: "ADD_ITEM"; item: Omit<CartItemInterface, "quantity"> }
-  | { type: "REMOVE_ITEM"; id: string };
+  | { type: "REMOVE_ITEM"; id: string }
+  | { type: "CLEAR_CART" };
 
 type CartState = {
   items: CartItemInterface[];
@@ -14,12 +15,14 @@ type CartContextType = {
   items: CartItemInterface[];
   addItem: (item: Omit<CartItemInterface, "quantity">) => void;
   removeItem: (id: string) => void;
+  clearCart: () => void;
 };
 
 const defaultContext: CartContextType = {
   items: [],
   addItem: () => {},
   removeItem: () => {},
+  clearCart: () => {},
 };
 
 export const CartContext = createContext<CartContextType>(defaultContext);
@@ -72,7 +75,11 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 
       return state;
     }
+    case "CLEAR_CART": {
+      return { ...state, items: [] };
+    }
 
+    
     default:
       return state;
   }
@@ -94,12 +101,16 @@ export function CartContextProvider({ children }: Props) {
     dispatchCartAction({ type: "REMOVE_ITEM", id });
   };
 
+  const clearCart = () => {
+    dispatchCartAction({ type: "CLEAR_CART" });
+  };
+
   const contextValue: CartContextType = {
     items: cartState.items,
     addItem,
     removeItem,
+    clearCart
   };
-
 
   return (
     <CartContext.Provider value={contextValue}>
